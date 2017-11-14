@@ -138,9 +138,9 @@
 			var results = [];
 			
 			$('#inputsValues > div').each(function(){
-				var car = $(this).find("div > .carinput").val();
-				var occ = parseFloat($(this).find("div > .occinput").val());
-				if(car != '' & occ != ''){
+				if(!isFieldEmpty($(this).find(".carinput")) && !isFieldEmpty($(this).find(".occinput"))){
+					var car = $(this).find("div > .carinput").val();
+					var occ = parseFloat($(this).find("div > .occinput").val());
 					results.push([occ, car]);
 				}
 			});
@@ -166,20 +166,7 @@
 
 		function manageSubmitDict(){
 
-			var i = 1;
-			var boolTest = true;
-
-			$('#inputsValues > div').each(function(){
-				var car = $(this).find("div > .carinput").val();
-				var occ = parseFloat($(this).find("div > .occinput").val());
-				if((car == '' && occ)||(car != '' && !occ)){
-					console.log(`Line ${i} not full`);
-					boolTest = false;
-				}
-				i++;
-			});
-
-			if(boolTest && inputs > 1){
+			if(inputs > 1){
 				$('#submitDict').removeAttr("disabled");
 				console.log("Enabling submit dictionnary button");
 			}else{
