@@ -27,10 +27,10 @@
 
 		<h1>Huffman code tool online</h1>
   
-	  	<form id="dict" method="post" action="getDict.php" class="well well-sm">
+	  	<form id="dict" class="well well-sm">
 	  		<legend>Dictionnary</legend>
 	  		<div id="inputsValues"></div>
-	  		<input class="btn btn-primary" type="submit" value="Create list" />
+	  		<input class="btn btn-primary" id="submitDict" type="submit" value="Create list" disabled="disabled" />
 	  	</form>
 
 	  	<div class="panel panel-default">
@@ -150,7 +150,7 @@
 		}
 
 		function manageInputs(item){
-			console.log(item.html());
+
 			if(isFieldEmpty(item.find(".carinput")) && isFieldEmpty(item.find(".occinput")) && inputs > 1){
 				item.remove();
 				inputs--;
@@ -159,6 +159,34 @@
 				inputs++;
 			}
 			console.log(`${inputs} inputs.`);
+
+			manageSubmitDict();
+
+		}
+
+		function manageSubmitDict(){
+
+			var i = 1;
+			var boolTest = true;
+
+			$('#inputsValues > div').each(function(){
+				var car = $(this).find("div > .carinput").val();
+				var occ = parseFloat($(this).find("div > .occinput").val());
+				if((car == '' && occ)||(car != '' && !occ)){
+					console.log(`Line ${i} not full`);
+					boolTest = false;
+				}
+				i++;
+			});
+
+			if(boolTest && inputs > 1){
+				$('#submitDict').removeAttr("disabled");
+				console.log("Enabling submit dictionnary button");
+			}else{
+				$('#submitDict').attr("disabled", "disabled");
+				console.log("Disabling submit dictionnary button");
+			}
+
 		}
 
 		function createHtmlTableFromObject(obj){
@@ -168,7 +196,6 @@
 			for(var key in obj){
 				html.children("tbody").append(`<tr><td>"${key}"</td><td>${obj[key]}</td></tr>`);
 			}
-			console.log(html.html());
 			return html;
 		}
 
@@ -186,6 +213,7 @@
 
 			var codes = createCodeFromTree(results);
 			$('#dictCodes').html(createHtmlTableFromObject(codes));
+
 		});
 
 		$('#encode').on('submit', function(event){
