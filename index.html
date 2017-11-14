@@ -16,13 +16,16 @@
     	.col-md-6{
     		margin-bottom: 10px;
     	}
+    	.btn{
+    		margin-top: 10px;
+    	}
     </style>
 </head>
 <body>
 
 	<div class="container">
 
-		<h>1lHuffman code tool online</h1>
+		<h1>Huffman code tool online</h1>
   
 	  	<form id="dict" method="post" action="getDict.php" class="well well-sm">
 	  		<legend>Dictionnary</legend>
@@ -31,10 +34,10 @@
 	  	</form>
 
 	  	<div class="panel panel-default">
-	  		<div class="panel-heading">Tree Results JSON</div>
-	  		<div class="panel-body" id="jsonDict">Not yet calculated.</div>
-	  		<div class="panel-heading">Codes</div>
-	  		<div class="panel-body" id="dictCodes">Not yet calculated.</div>
+	  		<div class="panel-heading" id="jsonDictTitle"><h4>Tree Results JSON</h4></div>
+	  		<div class="panel-body"><div id="jsonDict" class="collapse">Not yet calculated.</div><a href="#jsonDict" data-toggle="collapse" class="btn btn-default" id="toggleJsonDict">Toggle</a></div>
+	  		<div class="panel-heading"><h4>Codes</h4></div>
+	  		<div class="panel-body"><div class="collapse" id="dictCodes">Not yet calculated.</div><a href="#dictCodes" data-toggle="collapse" class="btn btn-default" id="toggleJsonDict">Toggle</a></div>
 	  	</div>
 
 	  	<!--<div id="jsonDict"></div>
@@ -183,9 +186,6 @@
 
 			var codes = createCodeFromTree(results);
 			$('#dictCodes').html(createHtmlTableFromObject(codes));
-			/*for(var key in codes){
-				$('#dictCodes').append(`"${key}" - ${codes[key]}<br />`);
-			}*/
 		});
 
 		$('#encode').on('submit', function(event){
