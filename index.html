@@ -30,7 +30,7 @@
 	  	<form id="dict" class="well well-sm">
 	  		<legend>Dictionnary</legend>
 	  		<div id="inputsValues"></div>
-	  		<input class="btn btn-primary" id="submitDict" type="submit" value="Create list" disabled="disabled" />
+	  		<input class="btn btn-primary" id="submitDict" type="submit" value="Create list" disabled="disabled" data-content="Some value were missing, so they weren't taken into account." data-placement="right" />
 	  	</form>
 
 	  	<div class="panel panel-default">
@@ -58,7 +58,7 @@
 		
 		var inputs = 1;
 		
-		var divInput = '<div class="form-group row"><div class="col-md-6"><input type="text" class="carinput form-control input-sm" placeholder="Character"></div><div class="col-md-6"><input type="number" class="occinput form-control input-sm" min="0" max="100" step="any" placeholder="Weight"><div></div>';
+		var divInput = '<div class="form-group row"><div class="col-md-6" data-content="Character missing" data-placement="left"><input type="text" class="carinput form-control input-sm" placeholder="Character"></div><div class="col-md-6" data-content="Weight missing" data-placement="right"><input type="number" class="occinput form-control input-sm" min="0" max="100" step="any" placeholder="Weight"><div></div>';
 
 		var jsonDict = '[[99.97,[40.28,[17.3,[8.4,"a"],[8.9,[4.18,"d"],[4.72,[2.18,[1.06,"b"],[1.12,"f"]],[2.54,[1.27,"g"],[1.27,[0.51,[0.21,[0.09,[0.04,"w"],[0.05,"k"]],[0.12,"z"]],[0.3,"y"]],[0.76,[0.31,"j"],[0.45,"x"]]]]]]],[22.98,[11,[5.26,"o"],[5.74,"u"]],[11.98,[5.97,[2.96,"m"],[3.01,"p"]],[6.01,"l"]]]],[59.69,[27.01,[12.81,[6.26,[3.03,"c"],[3.23,[1.32,"v"],[1.91,[0.92,"h"],[0.99,"q"]]]],[6.55,"r"]],[14.2,[7.07,"t"],[7.13,"n"]]],[32.68,[15.42,[7.34,"i"],[8.08,"s"]],[17.26,"e"]]]]]';
 
@@ -142,6 +142,12 @@
 					var car = $(this).find("div > .carinput").val();
 					var occ = parseFloat($(this).find("div > .occinput").val());
 					results.push([occ, car]);
+				}else if(!isFieldEmpty($(this).find(".carinput"))){
+					$(this).find(".carinput").parent().addClass("has-warning");
+					$(this).find(".occinput").parent().popover("show");
+				}else if(!isFieldEmpty($(this).find(".occinput"))){
+					$(this).find(".occinput").parent().addClass("has-warning");
+					$(this).find(".carinput").parent().popover("show");
 				}
 			});
 
@@ -188,11 +194,15 @@
 
 		$('body').on('change', 'input.carinput, input.occinput', function(){
 			manageInputs($(this).parent().parent());
+			if(!isFieldEmpty($(this))){
+				$(this).parent().popover("hide");
+				$(this).parent().parent().find(".has-warning").removeClass("has-warning");
+			}
 		});
 
 		$('#dict').on('submit', function(event){
 			event.preventDefault();
-			
+
 			var results = checkInputs();
 			
 			results = createTreeFromArray(results);
