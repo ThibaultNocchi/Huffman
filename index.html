@@ -30,7 +30,8 @@
 	  	<form id="dict" class="well well-sm">
 	  		<legend>Dictionnary</legend>
 	  		<div id="inputsValues"></div>
-	  		<input class="btn btn-primary" id="submitDict" type="submit" value="Create list" disabled="disabled" data-content="Some value were missing, so they weren't taken into account." data-placement="right" />
+	  		<input class="btn btn-primary" id="submitDict" type="submit" value="Create list" disabled="disabled" />
+	  		<input class="btn btn-success" id="saveDict" type="button" value="Save dictionnary" disabled="disabled" data-toggle="popover" data-content="Not working now" />
 	  	</form>
 
 	  	<div class="panel panel-default">
@@ -63,6 +64,8 @@
 		var jsonDict = '[[99.97,[40.28,[17.3,[8.4,"a"],[8.9,[4.18,"d"],[4.72,[2.18,[1.06,"b"],[1.12,"f"]],[2.54,[1.27,"g"],[1.27,[0.51,[0.21,[0.09,[0.04,"w"],[0.05,"k"]],[0.12,"z"]],[0.3,"y"]],[0.76,[0.31,"j"],[0.45,"x"]]]]]]],[22.98,[11,[5.26,"o"],[5.74,"u"]],[11.98,[5.97,[2.96,"m"],[3.01,"p"]],[6.01,"l"]]]],[59.69,[27.01,[12.81,[6.26,[3.03,"c"],[3.23,[1.32,"v"],[1.91,[0.92,"h"],[0.99,"q"]]]],[6.55,"r"]],[14.2,[7.07,"t"],[7.13,"n"]]],[32.68,[15.42,[7.34,"i"],[8.08,"s"]],[17.26,"e"]]]]]';
 
 		$('#inputsValues').append(divInput);
+
+		$('[data-toggle]').popover()
 
 		function isFieldEmpty(item){
 			if(item.val()){
@@ -206,15 +209,15 @@
 			var results = checkInputs();
 			
 			results = createTreeFromArray(results);
-			$("#jsonDict").text(JSON.stringify(results));
+			if(results.length > 0){
+				
+				$("#jsonDict").text(JSON.stringify(results));
 
-			var codes = createCodeFromTree(results);
-			$('#dictCodes').html(createHtmlTableFromObject(codes));
+				var codes = createCodeFromTree(results);
+				$('#dictCodes').html(createHtmlTableFromObject(codes));
 
-		});
-
-		$('#encode').on('submit', function(event){
-			event.preventDefault();
+				$('#saveDict').removeAttr("disabled");
+			}
 
 		});
 
