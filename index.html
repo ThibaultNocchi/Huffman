@@ -55,7 +55,7 @@
 
 		$('#inputsValues').append(divInput);
 
-		/*$('[data-toggle]').popover();
+		$('[data-toggle]').popover();
 
 		function isFieldEmpty(item){
 			if(item.val()){
@@ -179,6 +179,7 @@
 			var html = $("<table></table>");
 			html.addClass("table table-striped table-condensed");
 			html.html("<thead><tr><th>Character</th><th>Code</th></tr></thead><tbody></tbody>");
+			html.find("thead").addClass("thead-light");
 			for(var key in obj){
 				html.children("tbody").append(`<tr><td>"${key}"</td><td>${obj[key]}</td></tr>`);
 			}
@@ -209,7 +210,7 @@
 				$('#saveDict').removeAttr("disabled");
 			}
 
-		});*/
+		});
 
 	</script>
 </body>
