@@ -15,18 +15,29 @@
 
 		<h1>Huffman code tool online</h1>
   
-	  	<form id="dict" class="well well-sm">
-	  		<legend>Dictionnary</legend>
-	  		<div id="inputsValues"></div>
-	  		<input class="btn btn-primary" id="submitDict" type="submit" value="Create list" disabled="disabled" />
-	  		<input class="btn btn-success" id="saveDict" type="button" value="Save dictionnary" disabled="disabled" data-toggle="popover" data-content="Not working now" />
-	  	</form>
+		<div class="card">
+			<h4 class="card-header">Dictionnary</h4>
+			<div class="card-body">
+			  	<form id="dict" class="">
+			  		<div id="inputsValues"></div>
+			  		<input class="btn btn-primary" id="submitDict" type="submit" value="Create list" disabled="disabled" />
+			  		<input class="btn btn-success" id="saveDict" type="button" value="Save dictionnary" disabled="disabled" data-toggle="popover" data-content="Not working now" />
+			  	</form>
+			  </div>
+		</div>
 
-	  	<div class="panel panel-default">
-	  		<div class="panel-heading" id="jsonDictTitle"><h4>Tree Results JSON</h4></div>
-	  		<div class="panel-body"><div id="jsonDict" class="collapse">Not yet calculated.</div><a href="#jsonDict" data-toggle="collapse" class="btn btn-default" id="toggleJsonDict">Toggle</a></div>
-	  		<div class="panel-heading"><h4>Codes</h4></div>
-	  		<div class="panel-body"><div class="collapse" id="dictCodes">Not yet calculated.</div><a href="#dictCodes" data-toggle="collapse" class="btn btn-default" id="toggleJsonDict">Toggle</a></div>
+  		<div class="card mt-3">
+	  		<h4 class="card-header"><a href="#jsonDictCollapse" data-toggle="collapse" id="toggleJsonDict">Tree Results JSON</a></h4>
+	  		<div class="collapse" id="jsonDictCollapse">
+	  			<div class="card-body" id="jsonDict">Not yet calculated.</div>
+	  		</div>
+	  	</div>
+
+	  	<div class="card mt-3">
+	  		<h4 class="card-header"><a href="#dictCodesCollapse" data-toggle="collapse" id="toggleJsonDict">Codes</a></h4>
+	  		<div class="collapse" id="dictCodesCollapse">
+	  			<div class="card-body" id="dictCodes">Not yet calculated.</div>
+	  		</div>
 	  	</div>
 
   	</div>
@@ -38,7 +49,7 @@
 		
 		var inputs = 1;
 		
-		var divInput = '<div class="form-group row"><div class="col-md-6" data-content="Character missing" data-placement="left"><input type="text" class="carinput form-control input-sm" placeholder="Character"></div><div class="col-md-6" data-content="Weight missing" data-placement="right"><input type="number" class="occinput form-control input-sm" min="0" max="100" step="any" placeholder="Weight"><div></div>';
+		var divInput = '<div class="form-group form-row"><div class="col" data-content="Character missing" data-placement="left"><input type="text" class="carinput form-control form-control-sm" placeholder="Character"></div><div class="col" data-content="Weight missing" data-placement="right"><input type="number" class="occinput form-control form-control-sm" min="0" max="100" step="any" placeholder="Weight"><div></div>';
 
 		var jsonDict = '[[99.97,[40.28,[17.3,[8.4,"a"],[8.9,[4.18,"d"],[4.72,[2.18,[1.06,"b"],[1.12,"f"]],[2.54,[1.27,"g"],[1.27,[0.51,[0.21,[0.09,[0.04,"w"],[0.05,"k"]],[0.12,"z"]],[0.3,"y"]],[0.76,[0.31,"j"],[0.45,"x"]]]]]]],[22.98,[11,[5.26,"o"],[5.74,"u"]],[11.98,[5.97,[2.96,"m"],[3.01,"p"]],[6.01,"l"]]]],[59.69,[27.01,[12.81,[6.26,[3.03,"c"],[3.23,[1.32,"v"],[1.91,[0.92,"h"],[0.99,"q"]]]],[6.55,"r"]],[14.2,[7.07,"t"],[7.13,"n"]]],[32.68,[15.42,[7.34,"i"],[8.08,"s"]],[17.26,"e"]]]]]';
 
