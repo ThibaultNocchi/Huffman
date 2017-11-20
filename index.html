@@ -38,13 +38,6 @@
 				  </div>
 			</div>
 
-	  		<div class="card mt-3">
-		  		<h4 class="card-header"><a href="#jsonDictCollapse" data-toggle="collapse" id="toggleJsonDict">Tree Results JSON</a></h4>
-		  		<div class="collapse" id="jsonDictCollapse">
-		  			<div class="card-body" id="jsonDict">Not yet calculated.</div>
-		  		</div>
-		  	</div>
-
 		  	<div class="card mt-3">
 		  		<h4 class="card-header"><a href="#dictCodesCollapse" data-toggle="collapse" id="toggleJsonDict">Codes</a></h4>
 		  		<div class="collapse" id="dictCodesCollapse">
@@ -218,8 +211,6 @@
 			
 			results = createTreeFromArray(results);
 			if(results.length > 0){
-				
-				$("#jsonDict").text(JSON.stringify(results));
 
 				var codes = createCodeFromTree(results);
 				$('#dictCodes').html(createHtmlTableFromObject(codes));
