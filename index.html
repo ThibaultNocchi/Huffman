@@ -136,10 +136,10 @@
 					var occ = parseFloat($(this).find("div > .occinput").val());
 					results.push([occ, car]);
 				}else if(!isFieldEmpty($(this).find(".carinput"))){
-					$(this).find(".carinput").parent().addClass("has-warning");
+					$(this).find(".occinput").addClass("is-invalid");
 					$(this).find(".occinput").parent().popover("show");
 				}else if(!isFieldEmpty($(this).find(".occinput"))){
-					$(this).find(".occinput").parent().addClass("has-warning");
+					$(this).find(".carinput").addClass("is-invalid");
 					$(this).find(".carinput").parent().popover("show");
 				}
 			});
@@ -190,7 +190,7 @@
 			manageInputs($(this).parent().parent());
 			if(!isFieldEmpty($(this))){
 				$(this).parent().popover("hide");
-				$(this).parent().parent().find(".has-warning").removeClass("has-warning");
+				$(this).parent().parent().find(".is-invalid").removeClass("is-invalid");
 			}
 		});
 
