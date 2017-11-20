@@ -51,10 +51,11 @@
 						<div class="card-body">
 						  	<form id="loadDict" class="form">
 						  		<div class="form-group">
-						  			<label for="savedDicts">Saved trees:</label>
+						  			<label for="savedDicts" class="col-2">Saved trees:</label>
 						  			<select class="form-control w-25" id="savedDicts"></select>
 						  		</div>
 						  		<input class="btn btn-primary mt-2" id="loadDictButton" type="submit" value="Load tree" disabled="disabled" />
+						  		<input class="btn btn-danger mt-2" id="deleteDictButton" type="button" value="Delete tree" disabled="disabled" />
 						  	</form>
 						</div>
 					</div>
@@ -88,6 +89,7 @@
 		var frenchJsonDict = '[[99.97,[40.28,[17.3,[8.4,"a"],[8.9,[4.18,"d"],[4.72,[2.18,[1.06,"b"],[1.12,"f"]],[2.54,[1.27,"g"],[1.27,[0.51,[0.21,[0.09,[0.04,"w"],[0.05,"k"]],[0.12,"z"]],[0.3,"y"]],[0.76,[0.31,"j"],[0.45,"x"]]]]]]],[22.98,[11,[5.26,"o"],[5.74,"u"]],[11.98,[5.97,[2.96,"m"],[3.01,"p"]],[6.01,"l"]]]],[59.69,[27.01,[12.81,[6.26,[3.03,"c"],[3.23,[1.32,"v"],[1.91,[0.92,"h"],[0.99,"q"]]]],[6.55,"r"]],[14.2,[7.07,"t"],[7.13,"n"]]],[32.68,[15.42,[7.34,"i"],[8.08,"s"]],[17.26,"e"]]]]]';
 
 		var codes;
+		var dictListName = "dictList";
 
 		$('#inputsValues').append(divInput);
 
@@ -108,7 +110,6 @@
 		}
 
 		function saveDict(dict, label){
-			var dictListName = "dictList";
 			dict = JSON.stringify(dict);
 			manageStorage(label, dict);
 			var dictList;
@@ -125,17 +126,28 @@
 				manageStorage(dictListName, label);
 				console.log("No previous dictionnary list existed. Created a new one.");
 			}
+			updateDictSelect();
 		}
 
 		function removeDict(label){
 			localStorage.removeItem(label);
+			var listDicts = localStorage.getItem(dictListName).split(".");
+			var indexLabel = listDicts.indexOf(label);
+			listDicts.splice(indexLabel, 1);
+			listDicts = listDicts.join(".");
+			if(listDicts.length > 0){
+				manageStorage(dictListName, listDicts);
+			}else{
+				localStorage.clear();
+			}
+			updateDictSelect();
 		}
 
 		function updateDictSelect(){
 			$("#savedDicts").html("");
-			var dictListName = "dictList";
-			var listDicts = localStorage.getItem(dictListName).split(".");
+			var listDicts = localStorage.getItem(dictListName);
 			if(listDicts){
+				listDicts = listDicts.split(".");
 				$('#savedDicts').append("<option disabled selected>Choose a tree</option>");
 				for(var value in listDicts){
 					$("#savedDicts").append(`<option value="${listDicts[value]}">${listDicts[value]}</option>`);
@@ -304,7 +316,6 @@
 			var userDictName = $('#dictName').val();
 			$('#dictName').val("");
 			saveDict(codes, userDictName);
-			updateDictSelect();
 		});
 
 		$('#dictNameCollapse').on('shown.bs.collapse', function(){
@@ -313,6 +324,7 @@
 
 		$("#savedDicts").on("change", function(){
 			$("#loadDictButton").removeAttr("disabled");
+			$('#deleteDictButton').removeAttr("disabled");
 		});
 
 		$('#loadDict').on("submit", function(event){
@@ -320,6 +332,10 @@
 			var jsonDict = JSON.parse(manageStorage($('#savedDicts').val()));
 			$('#dictCodes').html(createHtmlTableFromObject(jsonDict));
 			$('#dictCodesCollapse').collapse("show");
+		});
+
+		$("#deleteDictButton").on("click", function(){
+			removeDict($('#savedDicts').val());
 		});
 
 		$(document).ready(function(){
