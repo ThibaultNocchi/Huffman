@@ -26,19 +26,40 @@
 	<div class="tab-content">
 
 		<div class="container tab-pane fade show active" id="dictionnaryTab">
-	  
-			<div class="card">
-				<h4 class="card-header">Tree creation</h4>
-				<div class="card-body">
-				  	<form id="dict" class="">
-				  		<div id="inputsValues"></div>
-				  		<div class="form-group w-25 collapse mb-0" id="dictNameCollapse">
-				  			<input type="text" class="form-control d-block" id="dictName" placeholder="Dictionnary name" />
-				  		</div>
-				  		<input class="btn btn-primary mt-2" id="submitDict" type="submit" value="Create tree" disabled="disabled" />
-				  		<input class="btn btn-success mt-2" id="saveDict" type="button" value="Save tree" disabled="disabled" data-toggle="collapse" data-target="#dictNameCollapse" />
-				  	</form>
-				  </div>
+	  	
+			<div id="dictSaveLoad">
+
+				<div class="card">
+					<h4 class="card-header"><a href="#dictCreationCollapse" data-toggle="collapse" id="toggleDictCreation">Tree creation</a></h4>
+					<div class="collapse show" id="dictCreationCollapse" data-parent="#dictSaveLoad">
+						<div class="card-body">
+						  	<form id="dict" class="">
+						  		<div id="inputsValues"></div>
+						  		<div class="form-group w-25 collapse mb-0" id="dictNameCollapse">
+						  			<input type="text" class="form-control d-block" id="dictName" placeholder="Dictionnary name" />
+						  		</div>
+						  		<input class="btn btn-primary mt-2" id="submitDict" type="submit" value="Create tree" disabled="disabled" />
+						  		<input class="btn btn-success mt-2" id="saveDict" type="button" value="Save tree" disabled="disabled" data-toggle="collapse" data-target="#dictNameCollapse" />
+						  	</form>
+						</div>
+					</div>
+				</div>
+
+				<div class="card">
+					<h4 class="card-header"><a href="#dictLoadCollapse" data-toggle="collapse" id="toggleDictLoad">Load tree</a></h4>
+					<div class="collapse" id="dictLoadCollapse" data-parent="#dictSaveLoad">
+						<div class="card-body">
+						  	<form id="loadDict" class="form">
+						  		<div class="form-group">
+						  			<label for="savedDicts">Saved trees:</label>
+						  			<select class="form-control w-25" id="savedDicts"></select>
+						  		</div>
+						  		<input class="btn btn-primary mt-2" id="loadDictButton" type="submit" value="Load tree" disabled="disabled" />
+						  	</form>
+						</div>
+					</div>
+				</div>
+
 			</div>
 
 		  	<div class="card mt-3">
@@ -64,7 +85,7 @@
 		
 		var divInput = '<div class="form-group form-row"><div class="col" data-content="Character missing" data-placement="left"><input type="text" class="carinput form-control form-control-sm" placeholder="Character"></div><div class="col" data-content="Weight missing" data-placement="right"><input type="number" class="occinput form-control form-control-sm" min="0" max="100" step="any" placeholder="Weight"><div></div>';
 
-		var jsonDict = '[[99.97,[40.28,[17.3,[8.4,"a"],[8.9,[4.18,"d"],[4.72,[2.18,[1.06,"b"],[1.12,"f"]],[2.54,[1.27,"g"],[1.27,[0.51,[0.21,[0.09,[0.04,"w"],[0.05,"k"]],[0.12,"z"]],[0.3,"y"]],[0.76,[0.31,"j"],[0.45,"x"]]]]]]],[22.98,[11,[5.26,"o"],[5.74,"u"]],[11.98,[5.97,[2.96,"m"],[3.01,"p"]],[6.01,"l"]]]],[59.69,[27.01,[12.81,[6.26,[3.03,"c"],[3.23,[1.32,"v"],[1.91,[0.92,"h"],[0.99,"q"]]]],[6.55,"r"]],[14.2,[7.07,"t"],[7.13,"n"]]],[32.68,[15.42,[7.34,"i"],[8.08,"s"]],[17.26,"e"]]]]]';
+		var frenchJsonDict = '[[99.97,[40.28,[17.3,[8.4,"a"],[8.9,[4.18,"d"],[4.72,[2.18,[1.06,"b"],[1.12,"f"]],[2.54,[1.27,"g"],[1.27,[0.51,[0.21,[0.09,[0.04,"w"],[0.05,"k"]],[0.12,"z"]],[0.3,"y"]],[0.76,[0.31,"j"],[0.45,"x"]]]]]]],[22.98,[11,[5.26,"o"],[5.74,"u"]],[11.98,[5.97,[2.96,"m"],[3.01,"p"]],[6.01,"l"]]]],[59.69,[27.01,[12.81,[6.26,[3.03,"c"],[3.23,[1.32,"v"],[1.91,[0.92,"h"],[0.99,"q"]]]],[6.55,"r"]],[14.2,[7.07,"t"],[7.13,"n"]]],[32.68,[15.42,[7.34,"i"],[8.08,"s"]],[17.26,"e"]]]]]';
 
 		var codes;
 
@@ -108,6 +129,20 @@
 
 		function removeDict(label){
 			localStorage.removeItem(label);
+		}
+
+		function updateDictSelect(){
+			$("#savedDicts").html("");
+			var dictListName = "dictList";
+			var listDicts = localStorage.getItem(dictListName).split(".");
+			if(listDicts){
+				$('#savedDicts').append("<option disabled selected>Choose a tree</option>");
+				for(var value in listDicts){
+					$("#savedDicts").append(`<option value="${listDicts[value]}">${listDicts[value]}</option>`);
+				}
+			}else{
+				$('#savedDicts').append("<option disabled selected>No tree saved</option>");
+			}
 		}
 
 		function isFieldEmpty(item){
@@ -269,10 +304,26 @@
 			var userDictName = $('#dictName').val();
 			$('#dictName').val("");
 			saveDict(codes, userDictName);
+			updateDictSelect();
 		});
 
 		$('#dictNameCollapse').on('shown.bs.collapse', function(){
 			$('#dictName').focus();
+		});
+
+		$("#savedDicts").on("change", function(){
+			$("#loadDictButton").removeAttr("disabled");
+		});
+
+		$('#loadDict').on("submit", function(event){
+			event.preventDefault();
+			var jsonDict = JSON.parse(manageStorage($('#savedDicts').val()));
+			$('#dictCodes').html(createHtmlTableFromObject(jsonDict));
+			$('#dictCodesCollapse').collapse("show");
+		});
+
+		$(document).ready(function(){
+			updateDictSelect();
 		});
 
 	</script>
