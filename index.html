@@ -265,8 +265,10 @@
 
 		});
 
-		$('#dictNameCollapse').on('show.bs.collapse', function(){
-			$('#dictName').val("")
+		$('#dictNameCollapse').on('hide.bs.collapse', function(){
+			var userDictName = $('#dictName').val();
+			$('#dictName').val("");
+			saveDict(codes, userDictName);
 		});
 
 		$('#dictNameCollapse').on('shown.bs.collapse', function(){
