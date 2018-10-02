@@ -13,8 +13,10 @@
 
 	<div class="container my-3">
 
+		<!-- Page's title -->
 		<h1 class="text-center mb-5">Huffman coding tool online</h1>
 
+		<!-- Tabs to switch between different views with Bootstrap -->
 		<ul class="nav nav-tabs">
 		  <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#dictionnaryTab">Tree</a></li>
 		  <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#encryptTab">Encrypt</a></li>
@@ -23,21 +25,28 @@
 
 	</div>
 
+	<!-- Global content -->
 	<div class="tab-content">
 
+		<!-- Tree and dictionnary view -->
 		<div class="container tab-pane fade show active" id="dictionnaryTab">
 	  	
+	  		<!-- Element with the tree creation and tree loading. It wraps them to create an accordion with those two cards. -->
 			<div id="dictSaveLoad">
 
+				<!-- First card element with the tree creation -->
 				<div class="card">
 					<h4 class="card-header"><a href="#dictCreationCollapse" data-toggle="collapse" id="toggleDictCreation">Tree creation</a></h4>
 					<div class="collapse show" id="dictCreationCollapse" data-parent="#dictSaveLoad">
 						<div class="card-body">
 						  	<form id="dict" class="">
+						  		<!-- Block where all the inputs of characters and frequencies will go -->
 						  		<div id="inputsValues"></div>
+						  		<!-- Input to name a tree to save which appears when the save button below is pressed the first time and disappears when the tree is saved -->
 						  		<div class="form-group w-25 collapse mb-0" id="dictNameCollapse">
 						  			<input type="text" class="form-control d-block" id="dictName" placeholder="Dictionnary name" />
 						  		</div>
+						  		<!-- Buttons to create and save a tree -->
 						  		<input class="btn btn-primary mt-2" id="submitDict" type="submit" value="Create tree" disabled="disabled" />
 						  		<input class="btn btn-success mt-2" id="saveDict" type="button" value="Save tree" disabled="disabled" data-toggle="collapse" data-target="#dictNameCollapse" />
 						  	</form>
@@ -45,6 +54,7 @@
 					</div>
 				</div>
 
+				<!-- Second card element to load a tree -->
 				<div class="card">
 					<h4 class="card-header"><a href="#dictLoadCollapse" data-toggle="collapse" id="toggleDictLoad">Load tree</a></h4>
 					<div class="collapse" id="dictLoadCollapse" data-parent="#dictSaveLoad">
@@ -52,8 +62,10 @@
 						  	<form id="loadDict" class="form">
 						  		<div class="form-group">
 						  			<label for="savedDicts" class="col-2">Saved trees:</label>
+						  			<!-- The select displays every saved tree -->
 						  			<select class="form-control w-25" id="savedDicts"></select>
 						  		</div>
+						  		<!-- Buttons to load or delete a selected tree -->
 						  		<input class="btn btn-primary mt-2" id="loadDictButton" type="submit" value="Load tree" disabled="disabled" />
 						  		<input class="btn btn-danger mt-2" id="deleteDictButton" type="button" value="Delete tree" disabled="disabled" />
 						  	</form>
@@ -63,9 +75,11 @@
 
 			</div>
 
+			<!-- Second wrapper which is a third card to display the tree codes -->
 		  	<div class="card mt-3">
 		  		<h4 class="card-header"><a href="#dictCodesCollapse" data-toggle="collapse" id="toggleJsonDict">Codes</a></h4>
 		  		<div class="collapse" id="dictCodesCollapse">
+		  			<!-- Where the list of codes will go -->
 		  			<div class="card-body" id="dictCodes">Not yet calculated.</div>
 		  		</div>
 		  	</div>
