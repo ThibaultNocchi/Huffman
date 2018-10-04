@@ -115,7 +115,7 @@ function updateDictSelect(){
 	// Clears the select content.
 	$("#savedDicts").html("");
 	var listDicts = localStorage.getItem(dictListName);
-	// If dictionnaries are stored we add them to the select.
+	// If dictionnaries are stored we add them to the select. Else we just add a simple option to display to the user.
 	if(listDicts){
 		listDicts = listDicts.split(".");
 		$('#savedDicts').append("<option disabled selected>Choose a tree</option>");
@@ -151,6 +151,10 @@ function createCodeFromTree(tree){
 	/**
 	Recursive function used to attribute binary codes to each leaf (each character)
 	by branching through each node and adding a "0" or "1" to the binary code if we either go to the "left" or "right".
+	A tree is an array representative of a Huffman tree, with each array within being another node or a leaf.
+	Each array has at index 0 the sum of the weights of both branches.
+	Index 1 and 2 represent a branch and are arrays. If you go into them, you can find another node or a leaf.
+	A leaf will have at index 0 the frequency (the weight) of its character, and at index 1 the character itself.
 	@param {Tree} node - A node of the tree, which can be the root to launch the recursive function.
 	@param {String} code - Current binary code as a string for the current node.
 	*/
@@ -176,6 +180,7 @@ function createCodeFromTree(tree){
 
 	}
 
+	// We start from the top node, and the recursive function will reach every leaf.
 	seekInBranch(tree[0], "");
 
 	console.log(`Codes: ${JSON.stringify(codes)}`);
@@ -190,8 +195,10 @@ Creates a tree from an array of values.
 */
 function createTreeFromArray(table){
 
+	// Number of max decimals to process.
 	var decimals = 4;
 
+	// We sort each character's array by its weight at index 0. After that weights at the beginning are the least important, and those at the end are the most important.
 	table.sort(function(a,b){
 		return a[0]-b[0];
 	});
