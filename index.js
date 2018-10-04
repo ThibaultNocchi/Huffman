@@ -120,7 +120,7 @@ function updateDictSelect(){
 		listDicts = listDicts.split(".");
 		$('#savedDicts').append("<option disabled selected>Choose a tree</option>");
 		for(var value in listDicts){
-			$("#savedDicts").append(`<option value="${listDicts[value]}">${listDicts[value]}</option>`);
+			$("#savedDicts").append("<option value=\""+ listDicts[value] +"\">"+ listDicts[value] +"</option>");
 		}
 	}else{
 		$('#savedDicts').append("<option disabled selected>No tree saved</option>");
