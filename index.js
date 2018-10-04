@@ -320,5 +320,6 @@ $("#deleteDictButton").on("click", function(){
 });
 
 $(document).ready(function(){
+	saveDict(createCodeFromTree(JSON.parse(frenchJsonDict)), "French");
 	updateDictSelect();
 });
