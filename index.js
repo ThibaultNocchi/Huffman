@@ -198,10 +198,12 @@ function createTreeFromArray(table){
 	// Number of max decimals to process.
 	var decimals = 4;
 
-	// We sort each character's array by its weight at index 0. After that weights at the beginning are the least important, and those at the end are the most important.
-	table.sort(function(a,b){
+	function sortInputs(a, b){
 		return a[0]-b[0];
-	});
+	}
+
+	// We sort each character's array by its weight at index 0. After that weights at the beginning are the least important, and those at the end are the most important.
+	table.sort(sortInputs);
 
 	var i = 0;
 	var iterateMax = table.length;
@@ -212,9 +214,7 @@ function createTreeFromArray(table){
 		var newNode = [newWeight, table[0], table[1]];
 		table.push(newNode);
 		table.splice(0,2);
-		table.sort(function(a,b){
-			return a[0]-b[0];
-		});
+		table.sort(sortInputs);
 		i++;
 	}
 
