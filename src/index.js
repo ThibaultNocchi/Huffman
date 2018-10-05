@@ -26,7 +26,7 @@ var dictListName = "dictList";
 // Adds to the HTML the first row of inputs
 $('#inputsValues').append(divInput);
 
-// Initializes the tooltips when a field is missing in a row of inputs
+// Initializes the tooltips when a field is missing in a row of inputs or when a tree name contains a dot.
 $('[data-toggle]').popover();
 
 /**
@@ -346,15 +346,23 @@ $('#dict').on('submit', function(event){
 
 // jQuery handles the collapsing effect of the save tree button. This event is called when we have typed a tree name and we clicked on "Save tree". jQuery hides the display and calls this event.
 // It retrieves the name given by the user, and asks the script to save the current dictionnary with the given name.
+// It doesn't save the dictionnary and sends an alert if it detects a dot in the name.
 $('#dictNameCollapse').on('hide.bs.collapse', function(){
+	$("#dictName").popover("hide");
 	var userDictName = $('#dictName').val();
-	$('#dictName').val("");
-	saveDict(codes, userDictName);
+	if(userDictName.indexOf(".") == -1){
+		$('#dictName').val("");
+		saveDict(codes, userDictName);
+	}else{
+		alert("Sorry, the tree wasn't saved because of a dot in the name. Please retry with another name.");
+	}
 });
 
 // This is called when we click on the "Save tree" button to display the input. jQuery displays it and calls this event.
 // We just give the focus to the input.
+// It also displays the dot tooltip.
 $('#dictNameCollapse').on('shown.bs.collapse', function(){
+	$("#dictName").popover("show");
 	$('#dictName').focus();
 });
 
