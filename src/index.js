@@ -4,7 +4,7 @@ var inputs = 1;
 
 /**Default code for an line of inputs.
 @type {String}*/
-var divInput = '<div class="form-group form-row"><div class="col" data-content="Character missing" data-placement="left"><input type="text" class="carinput form-control form-control-sm" placeholder="Character"></div><div class="col" data-content="Weight missing" data-placement="right"><input type="number" class="occinput form-control form-control-sm" min="0" step="any" placeholder="Weight"><div></div>';
+var divInput = '<div class="form-group form-row"><div class="col" data-content="Character missing" data-placement="left"><input type="text" class="carinput form-control form-control-sm" placeholder="Character"></div><div class="col" data-content="Weight missing" data-placement="right"><input type="number" class="occinput form-control form-control-sm" min="0" step="any" placeholder="Weight"></div></div>';
 
 /**
 Frequencies of the 26 latin characters in the French language.
@@ -53,13 +53,13 @@ function manageStorage(key, string=""){
 
 /**
 Is used to save or update a named dictionnary representing a tree into the browser's local storage as a JSONified string.
-@param {Tree} dict - Tree to save.
+@param {Array} fields - List of inputs given by the checkInputs function.
 @param {String} label - Name of the tree.
 */
-function saveDict(dict, label){
-	dict = JSON.stringify(dict);
+function saveDict(fields, label){
+	var fieldsStr = JSON.stringify(fields);
 	// We use our local function to store the new JSONified dictionnary
-	manageStorage(label, dict);
+	manageStorage(label, fieldsStr);
 	// It is used to retrieve the names of stored trees.
 	var dictList;
 	console.log("Dictionnary saved.")
@@ -83,6 +83,29 @@ function saveDict(dict, label){
 
 	// Updates the list of dictionnaries to load.
 	updateDictSelect();
+}
+
+function loadDict(label){
+
+	var fields = JSON.parse(manageStorage(label));
+	$('#dictCodes').html(createHtmlTableFromObject(createCodeFromTree(createTreeFromArray(fields))));
+
+	$('#inputsValues > div').each(function(){
+		$(this).find(".carinput").val(null);
+		$(this).find(".occinput").val(null);
+		$(this).find("input").trigger("change");
+	});
+
+	for (var i = fields.length - 1; i >= 0; i--) {
+		var lastJquery = $("#inputsValues > div:last");
+		lastJquery.find(".carinput").val(fields[i][1]);
+		lastJquery.find(".occinput").val(fields[i][0]);
+		lastJquery.find("input").trigger("change");
+	}
+
+	$('#dictCodesCollapse').collapse("show");
+	$('#dictCreationCollapse').collapse("show");
+
 }
 
 /**
@@ -190,11 +213,13 @@ function createCodeFromTree(tree){
 
 /**
 Creates a tree from an array of values.
-@param {Array} table - Array of characters and frequencies. Ex: [[50, "A"], [60, "B"], [20, "C"]]
+@param {Array} tableParam - Array of characters and frequencies. Ex: [[50, "A"], [60, "B"], [20, "C"]]
 @returns {Tree} The tree created from the given table.
 */
-function createTreeFromArray(table){
+function createTreeFromArray(tableParam){
 
+	// This "hack" is used to create a copy of the object which is tableParam.
+	var table = JSON.parse(JSON.stringify(tableParam));
 	// Number of max decimals to process.
 	var decimals = 4;
 
@@ -352,7 +377,7 @@ $('#dictNameCollapse').on('hide.bs.collapse', function(){
 	var userDictName = $('#dictName').val();
 	if(userDictName.indexOf(".") == -1){
 		$('#dictName').val("");
-		saveDict(codes, userDictName);
+		saveDict(checkInputs(), userDictName);
 	}else{
 		alert("Sorry, the tree wasn't saved because of a dot in the name. Please retry with another name.");
 	}
@@ -373,12 +398,9 @@ $("#savedDicts").on("change", function(){
 });
 
 // Event called when we have choosen a dictionnary to load, and we pressed the button to do it.
-// We retrieve the JSONified string of the dictionnary, turns it back to an object and create the table from it.
 $('#loadDict').on("submit", function(event){
 	event.preventDefault();
-	var jsonDict = JSON.parse(manageStorage($('#savedDicts').val()));
-	$('#dictCodes').html(createHtmlTableFromObject(jsonDict));
-	$('#dictCodesCollapse').collapse("show");
+	loadDict($("#savedDicts").val());
 });
 
 // It removes the selected dictionnary from the list.
@@ -388,6 +410,6 @@ $("#deleteDictButton").on("click", function(){
 
 // At the start of the script, we add a French dictionnary and we update the list of selectables dictionnaries.
 $(document).ready(function(){
-	saveDict(createCodeFromTree(JSON.parse(frenchJsonDict)), "French");
+	// saveDict(createCodeFromTree(JSON.parse(frenchJsonDict)), "French");
 	updateDictSelect();
 });
