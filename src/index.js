@@ -352,8 +352,24 @@ function enableTextToEncrypt(enable){
 		console.log("Encryption form enabled.");
 	}else{
 		$("#submitEncryptForm").attr("disabled", "disabled");
-		$("#encryptForm").attr("disabled", "disabled").attr("placeholder", $("#encryptForm").attr("placeholderDisabled"));;
+		$("#encryptForm").attr("disabled", "disabled").attr("placeholder", $("#encryptForm").attr("placeholderDisabled"));
 		console.log("Encryption form disabled.");
+	}
+}
+
+/**
+Enables or disables the textarea to decrypt a text.
+@param {Boolean} enable - Used to enable or disable the textarea.
+*/
+function enableTextToDecrypt(enable){
+	if(enable){
+		$("#submitDecryptForm").removeAttr("disabled");
+		$("#decryptForm").removeAttr("disabled").attr("placeholder", $("#decryptForm").attr("placeholderEnabled"));
+		console.log("Decryption form enabled.");
+	}else{
+		$("#submitDecryptForm").attr("disabled", "disabled");
+		$("#decryptForm").attr("disabled", "disabled").attr("placeholder", $("#decryptForm").attr("placeholderDisabled"));
+		console.log("Decryption form disabled.");
 	}
 }
 
@@ -390,6 +406,42 @@ function encryptFromString(text){
 
 }
 
+/**
+Decrypts a binary string following the loaded Huffman tree.
+@param {String} text - String to decrypt.
+@returns {String} Result of the decryption.
+*/
+function decryptFromString(text){
+
+	/**
+	Swap the keys and values of a dictionnary.
+	@param {Object} objToSwap - Dictionnary whom the keys and values will be swapped.
+	@returns {Object} Swapped dictionnary.
+	*/
+	function swap(objToSwap){
+		var ret = {};
+		for(var key in objToSwap){
+			ret[objToSwap[key]] = key;
+		}
+		return ret;
+	}
+
+	var invertedCodes = swap(codes);
+	var buffer = "";
+	var result = "";
+
+	for(var i in text){
+		buffer += text[i];
+		if(buffer in invertedCodes){
+			result += invertedCodes[buffer];
+			buffer = "";
+		}
+	}
+
+	return result;
+
+}
+
 // Whenever a character or weight input is changed, we check whether we need a new line of inputs or we need to delete this one.
 // We also remove tooltips before the manageInputs function reapplies them if necessary.
 $('body').on('change', 'input.carinput, input.occinput', function(){
@@ -416,6 +468,7 @@ $('#dict').on('submit', function(event){
 		$('#dictCodesCollapse').collapse("show");
 
 		enableTextToEncrypt(true);
+		enableTextToDecrypt(true);
 
 	}
 
@@ -454,6 +507,7 @@ $('#loadDict').on("submit", function(event){
 	event.preventDefault();
 	loadDict($("#savedDicts").val());
 	enableTextToEncrypt(true);
+	enableTextToDecrypt(true);
 });
 
 // It removes the selected dictionnary from the list.
@@ -489,6 +543,19 @@ $("#formEncryptForm").on("submit", function(event){
 
 	// Show the collapsing tab.
 	$("#encryptResultCollapse").collapse("show");
+
+});
+
+// Decrypts and displays on the press of the submit button.
+$("#formDecryptForm").on("submit", function(event){
+
+	event.preventDefault();
+
+	var decrypted = decryptFromString($("#decryptForm").val());
+	$("#decryptResult").val(decrypted);
+
+	// Show the collapsing tab.
+	$("#decryptResultCollapse").collapse("show");
 
 });
 

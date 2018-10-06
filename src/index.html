@@ -86,6 +86,7 @@
 
 	  	</div>
 
+	  	<!-- Tab of the encrypter tool. -->
 	  	<div class="container tab-pane fade" id="encryptTab">
 	  		
 	  		<!-- Card of the textarea to type a string to encrypt. -->
@@ -131,7 +132,41 @@
 	  	</div>
 
 
-	  	<div class="container tab-pane fade" id="decryptTab"></div>
+
+	  	<div class="container tab-pane fade" id="decryptTab">
+	  		
+	  		<!-- Card of the textarea to type a string to decrypt. -->
+	  		<div class="card mt-3">
+		  		<h4 class="card-header"><a href="#decryptFormCollapse" data-toggle="collapse" id="toggleDecryptForm">Text to decrypt</a></h4>
+		  		<div class="collapse show" id="decryptFormCollapse">
+		  			<div class="card-body">
+			  			<form id="formDecryptForm">
+			  				<div class="form-group">
+			  					<label for="decryptForm">Please input the text to be decrypted:</label>
+			  					<textarea class="form-control" id="decryptForm" placeholder="Please load a tree before." placeholderDisabled="Please load a tree before." placeholderEnabled="Binary code to decrypt." disabled></textarea>
+			  				</div>
+			  				<input class="btn btn-primary mt-2" id="submitDecryptForm" type="submit" value="Decrypt" disabled />
+			  			</form>
+			  		</div>
+		  		</div>
+		  	</div>
+
+		  	<!-- Card of the result. -->
+		  	<div class="card mt-3">
+		  		<h4 class="card-header"><a href="#decryptResultCollapse" data-toggle="collapse" id="toggleDecryptResult">Decrypted text</a></h4>
+		  		<div class="collapse" id="decryptResultCollapse">
+		  			<div class="card-body">
+			  			<form>
+			  				<div class="form-group">
+			  					<label for="decryptResult">Result of the decryption:</label>
+			  					<textarea class="form-control" id="decryptResult" placeholder="Not yet calculated." disabled></textarea>
+			  				</div>
+			  			</form>
+			  		</div>
+		  		</div>
+		  	</div>
+
+	  	</div>
 
   	</div>
 
