@@ -115,9 +115,15 @@
 			  					<textarea class="form-control" id="encryptResult" placeholder="Not yet calculated." disabled></textarea>
 			  				</div>
 			  			</form>
-			  			<p id="encryptResultStats" class="d-none">
-			  				Number of characters missed: <span id="missedCharacters">0</span>.
-			  			</p>
+			  			<div id="encryptResultStats" class="d-none">
+			  				Number of missed characters: <span id="nbMissedCharacters">0</span>.<br />
+			  				<table class="table table-striped d-none mt-2 col-4" id="missedCharacters">
+			  					<caption>Table of unique missed characters.</caption>
+			  					<th>
+			  						<td>Character</td>
+			  					</th>
+			  				</table>
+			  			</div>
 			  		</div>
 		  		</div>
 		  	</div>
