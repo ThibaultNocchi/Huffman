@@ -9,7 +9,7 @@ Finally, it is possible to decrypt a string.
 ## Why did I do it?
 I mainly did it after a class at school where we were taught about the Huffman tree and I thought it'd be a fun exercise to make a small application of it.
 
-## Acknowledgments
-* Some guys on StackOverflow for the help.
-* Bootstrap library.
-* jQuery library.
+## Copyright and licence
+[Bootstrap](https://getbootstrap.com) - [MIT Licence](https://getbootstrap.com/docs/4.1/about/license/)  
+[jQuery](https://jquery.com) - [MIT Licence](https://jquery.org/license/)  
+[Popper.js](https://github.com/FezVrasta/popper.js) - [MIT Licence](https://github.com/FezVrasta/popper.js/blob/master/LICENSE.md)
