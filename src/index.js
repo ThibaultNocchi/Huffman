@@ -85,6 +85,10 @@ function saveDict(fields, label){
 	updateDictSelect();
 }
 
+/**
+ * Loads into memory and on the page a tree.
+ * @param {String} label - Name of the tree.
+ */
 function loadDict(label){
 
 	var fields = JSON.parse(manageStorage(label));
