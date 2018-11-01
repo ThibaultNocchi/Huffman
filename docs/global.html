@@ -314,7 +314,7 @@
 
         
             
-<h4 class="name" id="frenchJsonDict"><span class="type-signature"></span>frenchJsonDict<span class="type-signature"> :String</span></h4>
+<h4 class="name" id="frenchJson"><span class="type-signature"></span>frenchJson<span class="type-signature"> :String</span></h4>
 
 
 
@@ -522,7 +522,7 @@ It also adds a warning if a input is invalid.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line235">line 235</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line265">line 265</a>
     </li></ul></dd>
     
 
@@ -679,7 +679,7 @@ It also adds a warning if a input is invalid.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line146">line 146</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line174">line 174</a>
     </li></ul></dd>
     
 
@@ -814,7 +814,7 @@ It also adds a warning if a input is invalid.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line307">line 307</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line337">line 337</a>
     </li></ul></dd>
     
 
@@ -870,7 +870,7 @@ It also adds a warning if a input is invalid.
     
 
     
-    <h4 class="name" id="createTreeFromArray"><span class="type-signature"></span>createTreeFromArray<span class="signature">(table)</span><span class="type-signature"> &rarr; {Tree}</span></h4>
+    <h4 class="name" id="createTreeFromArray"><span class="type-signature"></span>createTreeFromArray<span class="signature">(tableParam)</span><span class="type-signature"> &rarr; {Tree}</span></h4>
     
 
     
@@ -914,7 +914,7 @@ It also adds a warning if a input is invalid.
 
         <tr>
             
-                <td class="name"><code>table</code></td>
+                <td class="name"><code>tableParam</code></td>
             
 
             <td class="type">
@@ -971,7 +971,7 @@ It also adds a warning if a input is invalid.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line196">line 196</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line224">line 224</a>
     </li></ul></dd>
     
 
@@ -1010,6 +1010,593 @@ It also adds a warning if a input is invalid.
     <dd>
         
 <span class="param-type">Tree</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="decryptFromString"><span class="type-signature"></span>decryptFromString<span class="signature">(text)</span><span class="type-signature"> &rarr; {String}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Decrypts a binary string following the loaded Huffman tree.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>text</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String to decrypt.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line418">line 418</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Result of the decryption.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">String</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="enableTextToDecrypt"><span class="type-signature"></span>enableTextToDecrypt<span class="signature">(enable)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Enables or disables the textarea to decrypt a text.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>enable</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Used to enable or disable the textarea.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line368">line 368</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="enableTextToEncrypt"><span class="type-signature"></span>enableTextToEncrypt<span class="signature">(enable)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Enables or disables the textarea to encrypt a text.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>enable</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Used to enable or disable the textarea.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line352">line 352</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="encryptFromString"><span class="type-signature"></span>encryptFromString<span class="signature">(text)</span><span class="type-signature"> &rarr; {Boolean|Object}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Encrypt a given string with the global tree loaded.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>text</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String to encrypt.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line385">line 385</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Either returns a false boolean if no tree is loaded, or an object with the encrypted result at "encrypt", the number of characters missed at "missed" and the list of unique missed characters at "listMissed".
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+|
+
+<span class="param-type">Object</span>
 
 
     </dd>
@@ -1128,7 +1715,142 @@ It also adds a warning if a input is invalid.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line134">line 134</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line162">line 162</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="loadDict"><span class="type-signature"></span>loadDict<span class="signature">(label)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Loads into memory and on the page a tree.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>label</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Name of the tree.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line92">line 92</a>
     </li></ul></dd>
     
 
@@ -1263,7 +1985,7 @@ It also adds a warning if a input is invalid.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line268">line 268</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line298">line 298</a>
     </li></ul></dd>
     
 
@@ -1564,7 +2286,7 @@ It also adds a warning if a input is invalid.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line288">line 288</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line318">line 318</a>
     </li></ul></dd>
     
 
@@ -1699,7 +2421,7 @@ It also adds a warning if a input is invalid.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line92">line 92</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line120">line 120</a>
     </li></ul></dd>
     
 
@@ -1733,7 +2455,7 @@ It also adds a warning if a input is invalid.
     
 
     
-    <h4 class="name" id="saveDict"><span class="type-signature"></span>saveDict<span class="signature">(dict, label)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="saveDict"><span class="type-signature"></span>saveDict<span class="signature">(fields, label)</span><span class="type-signature"></span></h4>
     
 
     
@@ -1777,13 +2499,13 @@ It also adds a warning if a input is invalid.
 
         <tr>
             
-                <td class="name"><code>dict</code></td>
+                <td class="name"><code>fields</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Tree</span>
+<span class="param-type">Array</span>
 
 
             
@@ -1793,7 +2515,7 @@ It also adds a warning if a input is invalid.
 
             
 
-            <td class="description last">Tree to save.</td>
+            <td class="description last">List of inputs given by the checkInputs function.</td>
         </tr>
 
     
@@ -1943,7 +2665,7 @@ It also adds a warning if a input is invalid.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line114">line 114</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line142">line 142</a>
     </li></ul></dd>
     
 
@@ -1987,13 +2709,13 @@ It also adds a warning if a input is invalid.
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#checkInputs">checkInputs</a></li><li><a href="global.html#codes">codes</a></li><li><a href="global.html#createCodeFromTree">createCodeFromTree</a></li><li><a href="global.html#createHtmlTableFromObject">createHtmlTableFromObject</a></li><li><a href="global.html#createTreeFromArray">createTreeFromArray</a></li><li><a href="global.html#dictListName">dictListName</a></li><li><a href="global.html#divInput">divInput</a></li><li><a href="global.html#frenchJsonDict">frenchJsonDict</a></li><li><a href="global.html#inputs">inputs</a></li><li><a href="global.html#isFieldEmpty">isFieldEmpty</a></li><li><a href="global.html#manageInputs">manageInputs</a></li><li><a href="global.html#manageStorage">manageStorage</a></li><li><a href="global.html#manageSubmitDict">manageSubmitDict</a></li><li><a href="global.html#removeDict">removeDict</a></li><li><a href="global.html#saveDict">saveDict</a></li><li><a href="global.html#updateDictSelect">updateDictSelect</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#checkInputs">checkInputs</a></li><li><a href="global.html#codes">codes</a></li><li><a href="global.html#createCodeFromTree">createCodeFromTree</a></li><li><a href="global.html#createHtmlTableFromObject">createHtmlTableFromObject</a></li><li><a href="global.html#createTreeFromArray">createTreeFromArray</a></li><li><a href="global.html#decryptFromString">decryptFromString</a></li><li><a href="global.html#dictListName">dictListName</a></li><li><a href="global.html#divInput">divInput</a></li><li><a href="global.html#enableTextToDecrypt">enableTextToDecrypt</a></li><li><a href="global.html#enableTextToEncrypt">enableTextToEncrypt</a></li><li><a href="global.html#encryptFromString">encryptFromString</a></li><li><a href="global.html#frenchJson">frenchJson</a></li><li><a href="global.html#inputs">inputs</a></li><li><a href="global.html#isFieldEmpty">isFieldEmpty</a></li><li><a href="global.html#loadDict">loadDict</a></li><li><a href="global.html#manageInputs">manageInputs</a></li><li><a href="global.html#manageStorage">manageStorage</a></li><li><a href="global.html#manageSubmitDict">manageSubmitDict</a></li><li><a href="global.html#removeDict">removeDict</a></li><li><a href="global.html#saveDict">saveDict</a></li><li><a href="global.html#updateDictSelect">updateDictSelect</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Oct 04 2018 19:50:26 GMT+0100 (GMT+01:00)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu Nov 01 2018 18:33:52 GMT+0100 (GMT+01:00)
 </footer>
 
 <script> prettyPrint(); </script>
