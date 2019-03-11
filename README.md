@@ -1,5 +1,5 @@
 # Huffman
-A Huffman tree generator in Javascript with code creation, encryption and decryption. Try it on the [Github Page](https://tiwenty.github.io/Huffman/src/).
+A Huffman tree generator in Javascript with code creation, encryption and decryption. Try it on the [Github Page](https://thibaultnocchi.github.io/Huffman/src/).
 
 ## What does it do?
 It waits for the user to fill what characters he wants in his code, and at what frequency. The user can then create the tree and the resulting binary codes are displayed.  
